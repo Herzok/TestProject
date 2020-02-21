@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
-import ButtonDelCom from './ButtonDelCom'
 
 const MainDiv = styled.div`
  border: 1px solid #cecece;
@@ -25,20 +24,22 @@ const LabelDate = styled.label`
   margin: 3px;
   float: right;
 `
-const ListComments = () => {
 
-  let [listComments, setListComments] = useState([])
+const ListHeadHunter= () => {
+
+  let [listHabrs, setlistHabrs] = useState([])
 
   const requestApi = () => {
-    axios.get('/comments/list-comments')
+    axios.get('https://rybinsk.hh.ru/search/vacancy?area=112&st=searchVacancy&text=%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82&from=suggest_post')
       .then(res => {
         const { data } = res
-        setListComments(data)
+        setlistHabrs(data)
       })
       .catch((err) => {
         console.log(err)
       })
   }
+
 
   useEffect(() => {
     requestApi()
@@ -47,7 +48,7 @@ const ListComments = () => {
   return (
     <>
       {
-        listComments.map(item => {
+        listHabrs.map(item => {
           return (
             <MainDiv>
               <DivList>
@@ -55,9 +56,6 @@ const ListComments = () => {
                 <LabelDate>{item['dateTime']}</LabelDate>
               </DivList>
               <LabelComment>{item['textComment']}</LabelComment>
-              <ButtonDelCom
-                requestApi={requestApi}
-                idComment={item['idComment']}>Удалить комментарий</ButtonDelCom>
             </MainDiv>
           )
         })
@@ -65,4 +63,4 @@ const ListComments = () => {
     </>
   )
 }
-export default ListComments
+export default ListHeadHunter

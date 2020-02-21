@@ -1,14 +1,12 @@
 import React from 'react';
 import './App.css';
-import FormAddComment from './components/FormAddComment'
-import ListComments from './components/ListComments'
+import ListHeadHunter from './components/ListHeadHunter'
+import ListHabr from './components/ListHabr'
 
 function App() {
   return (
          <>
-           <FormAddComment/>
-           <br/>
-           <ListComments/>
+           <ListHabr/>
          </>
   );
 }
